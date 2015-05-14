@@ -4,6 +4,8 @@ import org.restlet.Server;
 import org.restlet.data.Protocol;
 import org.restlet.ext.jaxrs.JaxRsApplication;
 
+import br.com.service.FarmsPersistence;
+
 
 public class FarmsServer {
 
@@ -27,9 +29,10 @@ public class FarmsServer {
        // comp.getDefaultHost().setServerAddress("0.0.0.0");
         comp.getDefaultHost().attach(application);
         comp.start();
-        
+        FarmsPersistence.instance();
         System.out.println("Server started on port " + server.getPort());
         System.out.println("Press key to stop server");
+        
         System.in.read();
         System.out.println("Stopping server");
         comp.stop();

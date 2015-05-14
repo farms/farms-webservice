@@ -14,7 +14,7 @@ public class FarmsPersistence {
 		this.factory = Persistence.createEntityManagerFactory("farms");
 	}
 	
-	public static FarmsPersistence instance(){
+	public synchronized static FarmsPersistence instance(){
 		if(persistence == null){
 			persistence = new FarmsPersistence();
 		}
