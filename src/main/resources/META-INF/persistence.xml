@@ -9,7 +9,7 @@
    <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
    <!-- entidade mapeada -->
-   <class>br.com.modelo.Projeto</class>
+   <class>br.com.model.Projeto</class>
 
    <properties>
   <!-- dados da conexao -->
