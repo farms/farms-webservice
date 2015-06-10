@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Pesquisador {
+public class Researcher {
 
 	@Id
 	@GeneratedValue(generator="PesquisadorGenerator",strategy=GenerationType.SEQUENCE)
@@ -19,16 +19,16 @@ public class Pesquisador {
 	private Long id;
 	
 	@Column(nullable=false,length=70)
-	private String nome;
+	private String name;
 	
 	@Column(nullable=false,length=256)
-	private String senha;
+	private String password;
 	
 	@Column(nullable=false,length=50)
 	private String email;
 	
 	@ManyToMany
-	private List<Projeto> projetos;
+	private List<Project> projects;
 
 	public Long getId() {
 		return id;
@@ -38,20 +38,20 @@ public class Pesquisador {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -62,12 +62,12 @@ public class Pesquisador {
 		this.email = email;
 	}
 
-	public List<Projeto> getProjetos() {
-		return projetos;
+	public List<Project> getProjects() {
+		return projects;
 	}
 
-	public void setProjetos(List<Projeto> projetos) {
-		this.projetos = projetos;
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
 	}
 
 	

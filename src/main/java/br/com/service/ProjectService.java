@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import br.com.model.Projeto;
+import br.com.model.Project;
 
-public class ProjetoService {
+public class ProjectService {
 
-	public void inserir(Projeto projeto){
+	public void insert(Project projeto){
 		EntityManager manager = FarmsPersistence.instance().createEntityManager();
 		manager.getTransaction().begin();
 		manager.persist(projeto);
@@ -17,7 +17,7 @@ public class ProjetoService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Projeto> getAll(){
+	public List<Project> getAll(){
 		EntityManager manager = FarmsPersistence.instance().createEntityManager();
 		return manager
 				  .createQuery("select p from Projeto as p")

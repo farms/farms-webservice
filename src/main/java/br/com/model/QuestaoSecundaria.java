@@ -21,7 +21,7 @@ public class QuestaoSecundaria {
 	
 	@JoinColumn(nullable=false)
 	@ManyToOne
-	private Projeto projeto;
+	private Project projeto;
 
 	public Long getId() {
 		return id;
@@ -39,11 +39,11 @@ public class QuestaoSecundaria {
 		this.descricao = descricao;
 	}
 
-	public Projeto getProjeto() {
+	public Project getProjeto() {
 		return projeto;
 	}
 
-	public void setProjeto(Projeto projeto) {
+	public void setProjeto(Project projeto) {
 		this.projeto = projeto;
 	}
 }

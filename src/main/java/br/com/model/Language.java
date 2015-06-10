@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Idioma {
+public class Language {
 	
 	@Id
 	@GeneratedValue(generator="IdiomaGenerator",strategy=GenerationType.SEQUENCE)
@@ -18,11 +18,11 @@ public class Idioma {
 	private Integer id;
 
 	@Column(nullable = false)
-	private String descricao;
+	private String description;
 	
 	@JoinColumn(nullable=false)
 	@ManyToOne
-	private Projeto projeto;
+	private Project project;
 
 	public Integer getId() {
 		return id;
@@ -32,19 +32,21 @@ public class Idioma {
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public Projeto getProjeto() {
-		return projeto;
+	public Project getProject() {
+		return project;
 	}
 
-	public void setProjeto(Projeto projeto) {
-		this.projeto = projeto;
+	public void setProject(Project project) {
+		this.project = project;
 	}
+
+	
 }

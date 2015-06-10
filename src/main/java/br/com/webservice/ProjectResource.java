@@ -11,36 +11,36 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
-import br.com.model.Projeto;
-import br.com.service.ProjetoService;
+import br.com.model.Project;
+import br.com.service.ProjectService;
 
 @Path("/project")
 @Produces(MediaType.APPLICATION_JSON)
 public class ProjectResource {
 
-	private ProjetoService projetoService;
+	private ProjectService projetoService;
 	
 	public ProjectResource() {
-		this.projetoService = new ProjetoService();
+		this.projetoService = new ProjectService();
 	}
 	
 	
 	@GET
-	public List<Projeto> getPlain() {
+	public List<Project> getPlain() {
 		return projetoService.getAll();
 	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addProject(Projeto projeto){
+	public Response addProject(Project projeto){
 		System.out.println(projeto);
-		projetoService.inserir(projeto);
+		projetoService.insert(projeto);
 		return Response.created(UriBuilder.fromPath("/project/{id}").build(projeto)).build();
 	}
 	
 	@Path("/{id}")
 	@GET
 	public String getProject(@PathParam("id") Integer id) {
-		return "Projeto " + id;
+		return "Project " + id;
 	}
 }

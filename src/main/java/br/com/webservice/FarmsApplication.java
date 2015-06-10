@@ -9,6 +9,7 @@ public class FarmsApplication extends Application {
 	public Set<Class<?>> getClasses() {
         Set<Class<?>> rrcs = new HashSet<Class<?>>();
         rrcs.add(ProjectResource.class);
+        rrcs.add(LoginResource.class);
         return rrcs;
     }
 }
