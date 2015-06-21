@@ -7,17 +7,24 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.com.core.FarmsCrypt;
+import br.com.core.OperationException;
 import br.com.model.Researcher;
+import br.com.webservice.LoginResource;
 
 public class LoginService {
 	
-	public void insert(Researcher research){
-		EntityManager manager = FarmsPersistence.instance().createEntityManager();
-		manager.getTransaction().begin();
-		research.setPassword(FarmsCrypt.hashPwd(research.getPassword()));
-		manager.persist(research);
-		manager.getTransaction().commit();
-		manager.close();
+	public void insert(Researcher researcher) throws OperationException{
+		Researcher reasearcherCreated = this.find(researcher.getEmail());
+		if(reasearcherCreated == null){
+			EntityManager manager = FarmsPersistence.instance().createEntityManager();
+			manager.getTransaction().begin();
+			researcher.setPassword(FarmsCrypt.hashPwd(researcher.getPassword()));
+			manager.persist(researcher);
+			manager.getTransaction().commit();
+			manager.close();
+		}else{
+			throw new OperationException(LoginResource.ACCOUNT_ALREADY_CREATED, "Account already created");
+		}
 	}
 	
 	public Researcher find(String email){
@@ -29,6 +36,17 @@ public class LoginService {
 			return (Researcher)list.get(0);
 		}else{
 			return null;
+		}
+	}
+	
+	public void login(Researcher researcher) throws OperationException{
+		Researcher reasearcherOnDatabase = this.find(researcher.getEmail());
+		if(reasearcherOnDatabase == null){
+			throw new OperationException(LoginResource.ACCOUNT_NOT_EXISTS, "Account not exists");	
+		}else{
+			if(!FarmsCrypt.checkPwd(researcher.getPassword(), reasearcherOnDatabase.getPassword())){
+				throw new OperationException(LoginResource.PASSWORD_NOT_MATCHES, "Password not matches");
+			}
 		}
 	}
 }
