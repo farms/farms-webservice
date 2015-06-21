@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.com.core.FarmsCrypt;
 import br.com.model.Researcher;
 
 public class LoginService {
@@ -13,6 +14,7 @@ public class LoginService {
 	public void insert(Researcher research){
 		EntityManager manager = FarmsPersistence.instance().createEntityManager();
 		manager.getTransaction().begin();
+		research.setPassword(FarmsCrypt.hashPwd(research.getPassword()));
 		manager.persist(research);
 		manager.getTransaction().commit();
 		manager.close();
